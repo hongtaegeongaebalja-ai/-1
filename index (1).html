@@ -6,16 +6,8 @@
 
 <title>타이머 - 공부 집중 & 레벨업 앱</title>
 
-<!-- 📌 SEO 설명 -->
-<meta name="description" content="공부 타이머 앱 - 집중 시간 관리, 포모도로 학습법, 레벨 시스템, 공부 팁 제공으로 학습 효율을 높여주는 웹 앱입니다.">
-
-<meta name="keywords" content="공부 타이머, 집중 타이머, 포모도로, 공부 앱, 시간 관리, 학습 도구">
-<meta name="author" content="타이머 앱">
-
-<!-- 📌 Open Graph (공유 미리보기) -->
-<meta property="og:title" content="📚 타이머 - 공부 집중 앱">
-<meta property="og:description" content="공부 시간 관리 + 레벨 시스템 + 공부 팁 제공 앱">
-<meta property="og:type" content="website">
+<meta name="description" content="공부 타이머 앱 - 집중 시간 관리, 레벨 시스템, 공부 팁 제공 웹앱">
+<meta name="keywords" content="공부 타이머, 집중, 포모도로, 공부 앱">
 
 <style>
 body{
@@ -24,22 +16,19 @@ body{
   background:#f5f6fa;
   display:flex;
   justify-content:center;
-  align-items:center;
-  height:100vh;
+  padding:20px;
 }
 
 .box{
   background:white;
   padding:25px;
   border-radius:20px;
-  width:360px;
+  width:380px;
   text-align:center;
   box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
-h1{
-  margin-bottom:10px;
-}
+h1{margin-bottom:10px;}
 
 #timer{
   font-size:55px;
@@ -53,7 +42,6 @@ input{
   border-radius:10px;
   border:1px solid #ddd;
   text-align:center;
-  font-size:16px;
 }
 
 button{
@@ -74,11 +62,22 @@ button{
   color:#444;
 }
 
-.tip{
+/* 📦 정보 박스 */
+.info{
+  text-align:left;
   margin-top:15px;
-  font-size:13px;
+  font-size:12px;
+  color:#555;
+  background:#f8f8f8;
+  padding:10px;
+  border-radius:10px;
+  line-height:1.5;
+}
+
+.tip{
+  margin-top:10px;
+  font-size:12px;
   color:#666;
-  line-height:1.4;
   background:#f0f0f0;
   padding:10px;
   border-radius:10px;
@@ -86,7 +85,7 @@ button{
 
 /* 📱 반응형 */
 @media (max-width:600px){
-  .box{width:90%;}
+  .box{width:95%;}
   #timer{font-size:40px;}
 }
 </style>
@@ -98,9 +97,9 @@ button{
 
 <h1>⏱ 타이머</h1>
 
-<input type="number" id="minutes" placeholder="분 입력">
-
 <div id="timer">00:00</div>
+
+<input type="number" id="minutes" placeholder="분 입력">
 
 <button class="start" onclick="startTimer()">시작</button>
 <button class="stop" onclick="stopTimer()">정지</button>
@@ -111,16 +110,39 @@ button{
 XP: <span id="xp">0</span>
 </div>
 
-<div class="tip">
-📚 공부 팁<br><br>
-- 하루 30분 꾸준함이 성적을 바꾼다<br>
-- 이해 + 반복이 가장 중요하다<br>
-- 25분 집중 + 5분 휴식 (포모도로)<br>
-- 시험 전에는 문제풀이 중심으로 공부<br>
-- 꾸준함이 합격을 만든다 💪
+<!-- 📌 웹 설명 -->
+<div class="info">
+<b>📱 이 웹은 무엇인가요?</b><br>
+이 웹은 공부 시간을 관리하고 집중력을 높이기 위한 <b>공부 타이머 웹앱</b>입니다.<br>
+포모도로 방식 기반으로 제작되어 집중과 휴식을 반복하도록 도와줍니다.<br><br>
+
+<b>📌 주요 기능</b><br>
+- 공부 타이머 기능<br>
+- 레벨 시스템 (공부할수록 성장)<br>
+- 집중 시간 관리<br><br>
+
+<b>📌 사용 방법</b><br>
+1. 분 입력<br>
+2. 시작 버튼 클릭<br>
+3. 공부 집중<br>
+4. 완료 후 레벨 상승<br><br>
+
+<b>⚠️ 주의사항</b><br>
+- 너무 긴 시간보다 짧게 집중하는 것이 효과적입니다<br>
+- 25~50분 단위 공부를 추천합니다<br>
+- 브라우저를 닫으면 타이머는 초기화됩니다
 </div>
 
-<!-- 📌 연락 정보 (신뢰도용) -->
+<!-- 📚 공부 팁 -->
+<div class="tip">
+📚 공부 팁<br>
+- 하루 30분 꾸준함이 중요하다<br>
+- 이해 + 반복이 핵심이다<br>
+- 시험 전 문제풀이가 가장 중요하다<br>
+- 포기하지 않으면 반드시 올라간다 💪
+</div>
+
+<!-- 📧 연락 -->
 <div style="margin-top:10px;font-size:11px;color:#888;">
 문의: hongtaegeongaebalja@gmail.com
 </div>
@@ -129,34 +151,33 @@ XP: <span id="xp">0</span>
 
 <script>
 
-let time = 0;
+let time=0;
 let timer;
-let running = false;
+let running=false;
 
-let xp = 0;
-let level = 1;
+let xp=0;
+let level=1;
 
 function updateDisplay(){
-  let min = Math.floor(time/60);
-  let sec = time%60;
+  let m=Math.floor(time/60);
+  let s=time%60;
 
-  document.getElementById("timer").innerText =
-    String(min).padStart(2,'0') + ":" +
-    String(sec).padStart(2,'0');
+  document.getElementById("timer").innerText=
+    String(m).padStart(2,'0')+":"+String(s).padStart(2,'0');
 }
 
 function startTimer(){
   if(running) return;
 
   if(time<=0){
-    let m = document.getElementById("minutes").value;
+    let m=document.getElementById("minutes").value;
     if(!m) return alert("시간 입력");
-    time = m*60;
+    time=m*60;
   }
 
-  running = true;
+  running=true;
 
-  timer = setInterval(()=>{
+  timer=setInterval(()=>{
     if(time>0){
       time--;
       updateDisplay();
@@ -164,16 +185,15 @@ function startTimer(){
       clearInterval(timer);
       running=false;
 
-      xp += 10;
-
-      if(xp >= level*50){
+      xp+=10;
+      if(xp>=level*50){
         level++;
-        xp = 0;
-        alert("레벨 업! 🎉");
+        xp=0;
+        alert("레벨 업!");
       }
 
-      document.getElementById("xp").innerText = xp;
-      document.getElementById("level").innerText = level;
+      document.getElementById("xp").innerText=xp;
+      document.getElementById("level").innerText=level;
 
       alert("공부 끝!");
     }
